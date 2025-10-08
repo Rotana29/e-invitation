@@ -115,6 +115,7 @@
 
     /* Invitation Page */
     #invitation-page {
+      background: url("image/welcome_bg.jpg") no-repeat center center fixed;
       display: none;
       position: relative;
       z-index: 1;
@@ -409,4 +410,5 @@
         transform: translateY(-5px);
         opacity: 1;
       }
+
     }
