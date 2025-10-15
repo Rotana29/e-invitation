@@ -150,7 +150,9 @@
       border-radius: 8px;
       padding: 10px;
       backdrop-filter: blur(1px);
-      background: url("image/welcome_bg.jpg") no-repeat center center fixed;
+      background: url("image/welcome_bg.jpg") fixed;
+      background:fixed;
+      
     }
 
     h1 {
@@ -434,3 +436,4 @@
       }
 
     }
+
