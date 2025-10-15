@@ -238,7 +238,7 @@
 
     .album img {
       width: 100%;
-      height: 180px;
+      height: 240px;
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.5s ease;
@@ -432,4 +432,5 @@
         transform: translateY(-5px);
         opacity: 1;
       }
+
     }
