@@ -4,9 +4,10 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
     body {
-      color: #373737;
+      color: #2b2828;
       font-family: KhAngVassa, sans-serif;
-      overflow-x: hidden;           
+      overflow-x: hidden;        
+      background-color: #b4b4b4;   
     }
     /* Floating Petals */
     .petal {
@@ -148,7 +149,7 @@
       border-radius: 8px;
       padding: 10px;
       background-image: url("image/welcome_bg.jpg");
-      background-size: cover;
+      
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: center center;
