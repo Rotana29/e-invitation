@@ -7,7 +7,7 @@
       color: #373737;
       font-family: KhAngVassa, sans-serif;
       overflow-x: hidden;
-      background: whitesmoke
+      background: url("image/welcome_bg.jpg") fixed;
            
     }
     /* Floating Petals */
@@ -150,9 +150,6 @@
       border-radius: 8px;
       padding: 10px;
       backdrop-filter: blur(1px);
-      background: url("image/welcome_bg.jpg") fixed;
-      background:fixed;
-      
     }
 
     h1 {
@@ -436,4 +433,5 @@
       }
 
     }
+
 
