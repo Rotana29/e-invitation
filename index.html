@@ -13,7 +13,7 @@
   <!-- Welcome Page -->
   <div id="welcome-page">
     <h1 class="animate___">សូមគោរពអញ្ជើញ</h1>
-    <p>ឯកឧត្តម លោកជំទាវ លោកឧកញ៉ា <br>លោក លោកស្រី អ្នកនាង កញ្ញា បងប្អូនប្រិយមិត្ត <br>ទាំងអស់គ្នា</p>
+    <p id="guest-display"> <br><span id="guest-name"></span></p>
     <button id="open-btn"><strong>ចុចបើកលិខិតអញ្ជើញ</strong></button>
   </div>
 
@@ -41,32 +41,48 @@
         <br>សូមអរគុណ! 
       </div>
 
-      <div class="details"><h2>កាលបរិច្ឆេទ</h2>
-        <p>ថ្ងៃសៅរ៍ ១៣ កើត ខែមាឃ ឆ្នាំម្សាញ់ សប្តស័ក ព.ស.២៥៦៩</p>
-        <strong>ត្រូវនឹងថ្ងៃទី៣១ ខែមករា ឆ្នាំ២០២៦</strong><br>
-        Saturday, January 31, 2026
-        <br>
-        វេលាម៉ោង <strong>៥:០០</strong> ល្ងាច
-      </div>
+      
       <div class="divider"></div>
+
+      <div class="details"><h2>កាលបរិច្ឆេទ</h2>
+          <p>ថ្ងៃសៅរ៍ ១៣ កើត ខែមាឃ ឆ្នាំម្សាញ់ សប្តស័ក ព.ស.២៥៦៩</p>
+          <strong>ត្រូវនឹងថ្ងៃទី៣១ ខែមករា ឆ្នាំ២០២៦</strong><br>
+          Saturday, January 31, 2026
+        </div>
 
       <!--Timeline-->
       <div class="timeline">
-        <h2 style="margin: 10px;">កម្មវិធីអាពាហ៍ពិពាហ៍</h2>
-        <strong style="color: #b85c7a; margin: 20px;">08:00 AM</strong>
-        <div class="title">Bride & Groom Preparation</div>
-        <p class="desc">Final touches and photos before the ceremony.</p>
+        
+        <h3 style="margin: 10px; font-family: 'AKbalthom_Moul_1';">កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍</h3>
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ០៦:៣០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ចួបជុំភ្ញៀវកិត្តយសដើម្បីរៀបចំពិធីហែរជំនួន</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ០៧:០០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ពិធីហែជំនូនចូលរោងជ័យ និងអញ្ជើញភ្ញៀវកិត្តិយស ពិសារអាហារពេលព្រឹក</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ០៧:៣០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ពិធីចៅមហានិយាយជើងការ រាប់ផ្លៃឈើ</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ០៩:៣០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ពិធីកាត់សក់បង្កក់សិរី</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ១១:០០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ពិធីបង្វិលពពិល និងសំពះផ្ទឹមសែនចងដៃ</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ១២:០០ ព្រឹក</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;" >អញ្ជើញភ្ញៀវកិត្តិយស ពិសារអាហារថ្ងៃត្រង់</p>
+
+          <strong style="color: #b85c7a; margin: 20px;">វេលាម៉ោង ០៥:០០ រសៀល</strong>
+          <!--<div class="title">Bride & Groom Preparation</div>-->
+          <p class="desc" style="margin-bottom: 10px;">ទទួលភ្ញៀវកិត្តិយស ពិសារភោជនាអាហារ</p>
       
-        <strong>10:00 AM</strong>
-        <div class="title">Wedding Ceremony</div>
-        <p class="desc">Traditional Khmer ceremony at the main hall.</p>
-
-        <strong>12:00 AM</strong>
-        <div class="title">Family Photos</div>
-        <p class="desc">Group photo session with family and friends.</p>
-
-        <strong>05:00 PM</strong>
-        <div class="title">Reception & Lunch</div>
+       
 
     </div>
 
@@ -76,7 +92,7 @@
           <strong>ចុចចូលមើលទីតាំង</strong><img src="image/icon/map.png" width="40" height="40" alt="Map" />
         </a>
       </a><br>
-         <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1762.9732455899925!2d106.03233163704179!3d12.429874154220542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDI1JzQ3LjIiTiAxMDbCsDAxJzU2LjIiRQ!5e1!3m2!1sen!2skh!4v1759823035136!5m2!1sen!2skh" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1762.9732455899925!2d106.03233163704179!3d12.429874154220542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDI1JzQ3LjIiTiAxMDbCsDAxJzU2LjIiRQ!5e1!3m2!1sen!2skh!4v1759823035136!5m2!1sen!2skh" width="400" height="300" style="border:1px; box-shadow:#bbbbbb 1px 1px 1px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="divider"></div>
 
       <h2 class="magin: 2px;">វិចិត្រសាល</h2>
@@ -90,7 +106,10 @@
       </div>
 
       <div class="divider"></div>
-      <div class="footer">Please RSVP by December 1, 2025 | Contact: rsvp@example.com</div>
+      <div class="footer">
+        <h2>សេចក្ដីថ្លែងអំណរគុណ</h2>
+        <p>យើងខ្ញុំជាមាតាបិតាសូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះការអញ្ជើញចូលរួមជាភ្ញៀវកិត្តិយក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ។ <br>សូមគោរពជូនពរ ឯកឧត្តម លោកអ្នកឧកញ៉ា អ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា និងប្រិយមិត្តទាំងអស់ សូមមានសុខភាពល្អ និងទទួលជោគជ័យ គ្រប់ភារកិច្ច សូមអរគុណ!</p>
+      </div>
     </div>
   </div>
 
@@ -105,6 +124,17 @@
       petal.style.animationDuration = 10 + Math.random() * 10 + 's';
       petal.style.transform = `scale(${0.5 + Math.random() * 0.8})`;
       document.body.appendChild(petal);
+    }
+
+    // Get guest name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('guest');
+    const guestSpan = document.getElementById('guest-name');
+
+    if (guestName) {
+      guestSpan.innerText = decodeURIComponent(guestName);
+    } else {
+      guestSpan.innerText = "សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស";
     }
 
     // Show invitation
@@ -182,5 +212,3 @@
   </script>
 </body>
 </html>
-
-
