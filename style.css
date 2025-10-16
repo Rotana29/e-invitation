@@ -47,9 +47,9 @@
 
     /* Welcome Page */
     #welcome-page {
+      height: 100%;
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);  
       margin: 0px;
       display: flex;
       flex-direction: column;
@@ -58,9 +58,9 @@
       text-align: center;
       backdrop-filter: blur(3px);
       background: url("image/welcome_bg.jpg") no-repeat center center fixed;
+      background-size: 700px auto;
       transition: opacity 1s ease;
       z-index: 999;
-
     }
 
     #welcome-page h1 {
@@ -138,10 +138,11 @@
       display: none;
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 700px;
+      height: 100%;
       margin: auto;
       background-image: url("image/welcome_bg.jpg");
-      background-size: 600px auto;
+      background-size: 700px auto;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: center center;
@@ -153,7 +154,7 @@
       text-align: center;
       /*background: rgba(255, 255, 255, 0.8);*/
       border-radius: 4px;
-      padding: 10px;
+      padding: 20px;
     }
 
     h1 {
@@ -223,13 +224,19 @@
       margin-bottom: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.8s;
+      animation: zoomOut 2s infinite alternate ease-in-out;
     }
+    
     .person img:hover { transform: scale(1.05); }
 
     .person .name {
       font-family: 'AKbalthom_Moul_1';
       font-size: 1.2rem;
       color: #333;
+    }
+    .person .name p {
+      font-size: 1rem;
+      color: #b85c7a;
     }
 
     .album {
@@ -248,7 +255,7 @@
       cursor: pointer;
     }
 
-    .album img:hover { transform: scale(1.1); }
+    .album img:hover { transform: scale(1.05); }
 
     iframe {
       width: 100%;
@@ -268,7 +275,7 @@
     align-items: center;
     margin: 8px;
     gap: 8px;
-    background-color: #2b83cb;
+    background-color: #de6f96;
     color: white;
     border: white;
     border-radius: 40px;
