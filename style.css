@@ -159,9 +159,10 @@
 
     h1 {
       font-family: 'AKbalthom_Moul_1';
+      font-size: 1.8rem;
       font-size: auto;
       color: var(--accent);
-      opacity: 0;
+      margin-top: 20px;
       transform: scale(0.8);
       transition: all 0.8s ease;
       animation: fadeInText 2s ease-in-out;
@@ -378,6 +379,41 @@
     .close-btn { top: 20px; right: 30px; }
     .prev-btn { left: 15px; top: 50%; transform: translateY(-50%); }
     .next-btn { right: 15px; top: 50%; transform: translateY(-50%); }
+
+  
+   /* Corner images */
+  .corner {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    pointer-events: none; /* makes sure clicks go through */
+    z-index: 111;
+  }
+
+  .top-left {
+    top: 2px;
+    left: 2px;
+  }
+
+  .top-right {
+    top: -30px;
+    right: -40px;
+    transform: scaleX(-1); /* flip horizontally if needed */
+  }
+
+  .bottom-left {
+    bottom: -60px;
+    left: -60px;
+    transform: scaleY(-1); /* flip vertically if needed */
+  }
+
+  .bottom-right {
+    bottom: 2px;
+    right: 2px;
+    transform: scale(-1, -1); /* flip both ways */
+  }
+
 
      /*Fonts*/
     @font-face {
