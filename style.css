@@ -136,7 +136,7 @@
     /* Invitation Page */
     #invitation-page {
       display: none;
-      position: absolute;
+      position: relative;
       z-index: 1;
       max-width: 600px;
       margin: auto;
