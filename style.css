@@ -7,8 +7,7 @@
       color: #2b2828;
       font-family: KhAngVassa, sans-serif;
       overflow-x: hidden;        
-      background: #EEAECA;
-      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);  
+      background: radial-gradient(circle, rgb(191, 208, 231) 0%, rgb(205, 247, 250) 100%);  
     }
     /* Floating Petals */
     .petal {
@@ -47,20 +46,36 @@
 
     /* Welcome Page */
     #welcome-page {
-      height: 100%;
       position: fixed;
-      inset: 0;
-      margin: 0px;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+
+      background-image: url("image/welcome_bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+
       backdrop-filter: blur(3px);
-      background: url("image/welcome_bg.jpg") no-repeat center center fixed;
-      background-size: 700px auto;
       transition: opacity 1s ease;
-      z-index: 999;
+      
+    }
+
+    #welcome-page img {
+      font-family: 'AKbalthom_Moul_1';
+      margin: -20px;
+      color: var(--accent);
+      font-size: 1.6rem;
+      animation: titlePop 2s ease;
+      animation: fadeInText 2s ease-in-out;
+      
     }
 
     #welcome-page h1 {
@@ -141,12 +156,7 @@
       max-width: 700px;
       height: 100%;
       margin: auto;
-      background-image: url("image/welcome_bg.jpg");
-      background-size: 700px auto;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center center;
-            
+      
     }
 
     .card {
@@ -155,6 +165,18 @@
       /*background: rgba(255, 255, 255, 0.8);*/
       border-radius: 4px;
       padding: 20px;
+      background-image: url("image/bg01.jpg");
+      background-size: 110%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+            
+    }
+
+    img {
+      animation: titlePop 2s ease;
+      animation: fadeInText 2s ease-in-out;
+      
     }
 
     h1 {
@@ -162,11 +184,11 @@
       font-size: 1.8rem;
       font-size: auto;
       color: var(--accent);
-      margin-top: 20px;
+      margin-top: 0px;
       transform: scale(0.8);
       transition: all 0.8s ease;
       animation: fadeInText 2s ease-in-out;
-      animation: bounce 3s infinite;
+      animation: zoomOut 3s infinite alternate ease-in-out;
       
     }
     h1.show { opacity: 1; transform: scale(1); }
@@ -245,11 +267,12 @@
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 10px;
       margin-top: 20px;
+      box-shadow: #666;
     }
 
     .album img {
       width: 100%;
-      height: 240px;
+      height: 400px;
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.5s ease;
@@ -303,9 +326,10 @@
   .timeline {
     margin: 8px;
     border: 1px solid #ffffff;
+    
     border-radius: 10px;
-    backdrop-filter: blur(8px);
-    box-shadow: #b4b4b4 1px 2px 1px;
+    backdrop-filter: blur(4px);
+    box-shadow:0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);;
     
   }
 
@@ -324,6 +348,31 @@
     color: #666;
     font-size: 14px;
     margin: 0;
+  }
+
+  #muteBtn {
+    position: fixed;        /* 🔒 Always on screen */
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;         /* 🔝 Above all elements */
+
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #muteBtn:hover {
+    background: rgba(0,0,0,0.8);
   }
 
   /* Responsive: on narrow screens show vertical timeline */
@@ -397,7 +446,7 @@
   }
 
   .top-right {
-    top: -30px;
+    top: -60px;
     right: -40px;
     transform: scaleX(-1); /* flip horizontally if needed */
   }
