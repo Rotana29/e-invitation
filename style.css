@@ -154,24 +154,37 @@
       position: relative;
       z-index: 1;
       max-width: 700px;
-      height: 100%;
       margin: auto;
       
     }
+    #invitation-page::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 700px;
+      max-width: 100vw;
+      height: 100vh;
+
+      background-image: url("image/bg01.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      z-index: -1;
+    }
 
     .card {
-      height: 100%;
+      position: relative;
+      z-index: 1;
       text-align: center;
-      /*background: rgba(255, 255, 255, 0.8);*/
       border-radius: 4px;
       padding: 20px;
-      background-image: url("image/bg01.jpg");
-      background-size: 110%;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center center;
-            
+      background: rgba(255, 255, 255, 0.75); /* optional */
     }
+
 
     img {
       animation: titlePop 2s ease;
@@ -528,3 +541,8 @@
         opacity: 1;
       }
     }
+    @media (max-width: 768px) {
+    #invitation-page::before {
+      width: 100vw;
+    }
+  }

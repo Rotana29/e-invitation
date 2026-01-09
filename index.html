@@ -138,7 +138,7 @@
 <script>
   const music = document.getElementById("bgMusic");
   const muteBtn = document.getElementById("muteBtn");
-  music.volume = 0.1;
+  music.volume = 0.2;
   music.muted = false;
 
   // Play music after first user click (browser policy)
@@ -151,6 +151,18 @@
     e.stopPropagation();
     music.muted = !music.muted;
     muteBtn.textContent = music.muted ? "🔇" : "🔊";
+  });
+  // 🔴 Stop music when leaving page / refresh
+  window.addEventListener("beforeunload", () => {
+    music.pause();
+    music.currentTime = 0;
+  });
+
+  // 🔴 Stop music when tab is hidden or switched
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      music.pause();
+    }
   });
 </script>
   <script>
@@ -252,4 +264,3 @@
   </script>
 </body>
 </html>
-
