@@ -115,10 +115,10 @@
       <div class="divider"></div>
 
       <h2 class="magin: 2px;">វិចិត្រសាល</h2>
-      <video id="weddingVideo"
-            autoplay
-            playsinline
-            controls
+      <video id="weddingVideo" 
+            muted 
+            playsinline 
+            loop 
             style="max-width:100%; height:auto;">
         <source src="rotana&socheat.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -153,43 +153,48 @@ const muteBtn = document.getElementById("muteBtn");
 music.volume = 0.2;
 music.muted = false;
 
-// User interaction flag
+// User interaction flag (desktop autoplay)
 let userInteracted = false;
 
-// Play music after first click/tap
+// Enable audio on first click/tap for desktop
 function enableAudio() {
   if (!userInteracted) {
     music.play().catch(() => {});
     userInteracted = true;
   }
 }
-
 document.addEventListener("click", enableAudio, { once: true });
-document.addEventListener("touchstart", enableAudio, { once: true }); // mobile support
+document.addEventListener("touchstart", enableAudio, { once: true });
 
-// Mute/unmute button
+// Mute/unmute button for background music
 muteBtn.addEventListener("click", e => {
   e.stopPropagation();
   music.muted = !music.muted;
   muteBtn.textContent = music.muted ? "🔇" : "🔊";
 });
 
-// IntersectionObserver: play video only when visible
+// IntersectionObserver: play/pause video when scrolling
 const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Video visible → play video if user interacted
-      if (userInteracted || !/Mobi|Android/i.test(navigator.userAgent)) {
-        video.play().catch(()=>{});
-        if (!music.paused) music.pause();
-      }
+      // Play video and unmute when visible
+      video.muted = false;   // unmute video
+      video.play().catch(() => {});
+
+      // Pause background music
+      if (!music.paused) music.pause();
     } else {
-      // Video out of view → pause video, resume music
+      // Pause video when out of view
       video.pause();
-      if (!music.muted) music.play().catch(()=>{});
+
+      // Mute video when out of view
+      video.muted = true;
+
+      // Resume background music if unmuted
+      if (!music.muted && userInteracted) music.play().catch(() => {});
     }
   });
-}, { threshold: 0.5 }); // 50% visible
+}, { threshold: 0.5 }); // play when 50% of video visible
 
 videoObserver.observe(video);
 
@@ -198,6 +203,7 @@ window.addEventListener("beforeunload", () => {
   music.pause();
   music.currentTime = 0;
 });
+
 </script>
 
 
