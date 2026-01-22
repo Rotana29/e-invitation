@@ -145,48 +145,50 @@
   </div>
 
 <script>
-    const music = document.getElementById("bgMusic");
-    const video = document.getElementById("weddingVideo");
-    const muteBtn = document.getElementById("muteBtn");
+const music = document.getElementById("bgMusic");
+const video = document.getElementById("weddingVideo");
+const muteBtn = document.getElementById("muteBtn");
 
-    music.volume = 0.2;
-    music.muted = false;
+// Music settings
+music.volume = 0.2;
+music.muted = false;
 
-    // ▶️ Play music after first user interaction
-    document.addEventListener("click", () => {
-      music.play().catch(() => {});
-    }, { once: true });
+// Play music after first user interaction
+document.addEventListener("click", () => {
+  music.play().catch(()=>{});
+}, { once: true });
 
-    // 🔊 Mute / Unmute button
-    muteBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      music.muted = !music.muted;
-      muteBtn.textContent = music.muted ? "🔇" : "🔊";
-    });
+// Mute/unmute button
+muteBtn.addEventListener("click", e => {
+  e.stopPropagation();
+  music.muted = !music.muted;
+  muteBtn.textContent = music.muted ? "🔇" : "🔊";
+});
 
-    // 🎬 Play video → pause music
-    video.addEventListener("play", () => {
-      if (!music.paused) {
-        music.pause();
-      }
-    });
-
-    // ⏸ Pause / End video → resume music
-    function resumeMusic() {
-      if (!music.muted) {
-        music.play().catch(() => {});
-      }
+// Auto play video when scroll into view and pause when scroll out
+const videoObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Scroll sees video → play video, pause music
+      video.play().catch(()=>{});
+      if (!music.paused) music.pause();
+    } else {
+      // Scroll out of view → pause video, resume music
+      video.pause();
+      if (!music.muted) music.play().catch(()=>{});
     }
+  });
+}, { threshold: 0.5 }); // 50% of video visible
 
-    video.addEventListener("pause", resumeMusic);
-    video.addEventListener("ended", resumeMusic);
+videoObserver.observe(video);
 
-    // 🔴 Stop music when leaving page
-    window.addEventListener("beforeunload", () => {
-      music.pause();
-      music.currentTime = 0;
-    });
-  </script>
+// Stop music when leaving page
+window.addEventListener("beforeunload", () => {
+  music.pause();
+  music.currentTime = 0;
+});
+</script>
+
 
   <script>
     // Floating petals generator
