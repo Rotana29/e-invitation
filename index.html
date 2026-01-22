@@ -115,6 +115,15 @@
       <div class="divider"></div>
 
       <h2 class="magin: 2px;">វិចិត្រសាល</h2>
+      <video id="weddingVideo"
+            autoplay
+            playsinline
+            controls
+            style="max-width:100%; height:auto;">
+        <source src="rotana&socheat.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
       <div class="album">
         <img src="image/albumimage.jpg" alt="Album Photo 1">
         <img src="image/albumimage.jpg" alt="Album Photo 2">
@@ -136,35 +145,49 @@
   </div>
 
 <script>
-  const music = document.getElementById("bgMusic");
-  const muteBtn = document.getElementById("muteBtn");
-  music.volume = 0.2;
-  music.muted = false;
+    const music = document.getElementById("bgMusic");
+    const video = document.getElementById("weddingVideo");
+    const muteBtn = document.getElementById("muteBtn");
 
-  // Play music after first user click (browser policy)
-  document.addEventListener("click", () => {
-    music.play();
-  }, { once: true });
+    music.volume = 0.2;
+    music.muted = false;
 
-  // Toggle mute
-  muteBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    music.muted = !music.muted;
-    muteBtn.textContent = music.muted ? "🔇" : "🔊";
-  });
-  // 🔴 Stop music when leaving page / refresh
-  window.addEventListener("beforeunload", () => {
-    music.pause();
-    music.currentTime = 0;
-  });
+    // ▶️ Play music after first user interaction
+    document.addEventListener("click", () => {
+      music.play().catch(() => {});
+    }, { once: true });
 
-  // 🔴 Stop music when tab is hidden or switched
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      music.pause();
+    // 🔊 Mute / Unmute button
+    muteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      music.muted = !music.muted;
+      muteBtn.textContent = music.muted ? "🔇" : "🔊";
+    });
+
+    // 🎬 Play video → pause music
+    video.addEventListener("play", () => {
+      if (!music.paused) {
+        music.pause();
+      }
+    });
+
+    // ⏸ Pause / End video → resume music
+    function resumeMusic() {
+      if (!music.muted) {
+        music.play().catch(() => {});
+      }
     }
-  });
-</script>
+
+    video.addEventListener("pause", resumeMusic);
+    video.addEventListener("ended", resumeMusic);
+
+    // 🔴 Stop music when leaving page
+    window.addEventListener("beforeunload", () => {
+      music.pause();
+      music.currentTime = 0;
+    });
+  </script>
+
   <script>
     // Floating petals generator
     const numPetals = 20;
