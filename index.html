@@ -149,14 +149,23 @@ const music = document.getElementById("bgMusic");
 const video = document.getElementById("weddingVideo");
 const muteBtn = document.getElementById("muteBtn");
 
-// Music settings
+// Initial music settings
 music.volume = 0.2;
 music.muted = false;
 
-// Play music after first user interaction
-document.addEventListener("click", () => {
-  music.play().catch(()=>{});
-}, { once: true });
+// User interaction flag
+let userInteracted = false;
+
+// Play music after first click/tap
+function enableAudio() {
+  if (!userInteracted) {
+    music.play().catch(() => {});
+    userInteracted = true;
+  }
+}
+
+document.addEventListener("click", enableAudio, { once: true });
+document.addEventListener("touchstart", enableAudio, { once: true }); // mobile support
 
 // Mute/unmute button
 muteBtn.addEventListener("click", e => {
@@ -165,20 +174,22 @@ muteBtn.addEventListener("click", e => {
   muteBtn.textContent = music.muted ? "🔇" : "🔊";
 });
 
-// Auto play video when scroll into view and pause when scroll out
+// IntersectionObserver: play video only when visible
 const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Scroll sees video → play video, pause music
-      video.play().catch(()=>{});
-      if (!music.paused) music.pause();
+      // Video visible → play video if user interacted
+      if (userInteracted || !/Mobi|Android/i.test(navigator.userAgent)) {
+        video.play().catch(()=>{});
+        if (!music.paused) music.pause();
+      }
     } else {
-      // Scroll out of view → pause video, resume music
+      // Video out of view → pause video, resume music
       video.pause();
       if (!music.muted) music.play().catch(()=>{});
     }
   });
-}, { threshold: 0.5 }); // 50% of video visible
+}, { threshold: 0.5 }); // 50% visible
 
 videoObserver.observe(video);
 
@@ -188,6 +199,7 @@ window.addEventListener("beforeunload", () => {
   music.currentTime = 0;
 });
 </script>
+
 
 
   <script>
