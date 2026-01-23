@@ -115,11 +115,13 @@
       <div class="divider"></div>
 
       <h2 class="magin: 2px;">វិចិត្រសាល</h2>
-      <video id="weddingVideo" 
-            muted 
-            playsinline 
-            loop 
-            style="max-width:100%; height:auto;">
+      <div class="video-wrapper">
+      <video id="weddingVideo"
+            muted
+            playsinline
+            loop
+            preload="metadata"
+            poster="image/video-poster.jpg">
         <source src="rotana&socheat.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -144,69 +146,80 @@
     </div>
   </div>
 
-<script>
-const music = document.getElementById("bgMusic");
-const video = document.getElementById("weddingVideo");
-const muteBtn = document.getElementById("muteBtn");
+  <script>
+    const music = document.getElementById("bgMusic");
+    const video = document.getElementById("weddingVideo");
+    const muteBtn = document.getElementById("muteBtn");
 
-// Initial music settings
-music.volume = 0.2;
-music.muted = false;
+    // ===== Background Music Settings =====
+    music.volume = 0.2;
+    music.muted = false;
 
-// User interaction flag (desktop autoplay)
-let userInteracted = false;
+    // User interaction flag (required for mobile audio)
+    let userInteracted = false;
 
-// Enable audio on first click/tap for desktop
-function enableAudio() {
-  if (!userInteracted) {
-    music.play().catch(() => {});
-    userInteracted = true;
-  }
-}
-document.addEventListener("click", enableAudio, { once: true });
-document.addEventListener("touchstart", enableAudio, { once: true });
-
-// Mute/unmute button for background music
-muteBtn.addEventListener("click", e => {
-  e.stopPropagation();
-  music.muted = !music.muted;
-  muteBtn.textContent = music.muted ? "🔇" : "🔊";
-});
-
-// IntersectionObserver: play/pause video when scrolling
-const videoObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Play video and unmute when visible
-      video.muted = false;   // unmute video
-      video.play().catch(() => {});
-
-      // Pause background music
-      if (!music.paused) music.pause();
-    } else {
-      // Pause video when out of view
-      video.pause();
-
-      // Mute video when out of view
-      video.muted = true;
-
-      // Resume background music if unmuted
-      if (!music.muted && userInteracted) music.play().catch(() => {});
+    // Enable audio after first user action
+    function enableAudio() {
+      if (!userInteracted) {
+        music.play().catch(() => {});
+        userInteracted = true;
+      }
     }
-  });
-}, { threshold: 0.5 }); // play when 50% of video visible
 
-videoObserver.observe(video);
+    document.addEventListener("click", enableAudio, { once: true });
+    document.addEventListener("touchstart", enableAudio, { once: true });
 
-// Stop music when leaving page
-window.addEventListener("beforeunload", () => {
-  music.pause();
-  music.currentTime = 0;
-});
+    // Music mute/unmute button
+    muteBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      music.muted = !music.muted;
+      muteBtn.textContent = music.muted ? "🔇" : "🔊";
+    });
 
-</script>
+    // ===== Video Optimization for Mobile =====
+    video.muted = true;        // required for mobile autoplay
+    video.playsInline = true;
+    video.preload = "metadata";
 
+    // Light preload after page load (faster first play)
+    window.addEventListener("load", () => {
+      setTimeout(() => video.load(), 1200);
+    });
 
+    // ===== Scroll-based Video Autoplay =====
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // ▶️ Video visible
+          video.muted = false;     // unmute video when visible
+          video.play().catch(()=>{});
+
+          // ⏸ Pause background music
+          if (!music.paused) music.pause();
+        } else {
+          // ⏸ Video out of view
+          video.pause();
+          video.muted = true;
+
+          // ▶️ Resume music (if allowed)
+          if (userInteracted && !music.muted) {
+            music.play().catch(()=>{});
+          }
+        }
+      });
+    }, {
+      threshold: 0.35,          // smoother on mobile
+      rootMargin: "120px"       // start loading earlier
+    });
+
+    videoObserver.observe(video);
+
+    // ===== Cleanup =====
+    window.addEventListener("beforeunload", () => {
+      music.pause();
+      music.currentTime = 0;
+    });
+  </script>
 
   <script>
     // Floating petals generator
