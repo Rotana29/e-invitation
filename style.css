@@ -101,8 +101,9 @@
       text-align: center;
       font-family: 'Kh_Ang_MoulHand', sans-serif;
       font-weight: normal;
-      
-      border: 2px solid #b85c7a;
+      color: #b85c7a;
+      width: 370px;
+      border: 1.5px solid #b85c7a;
       border-radius: 50px;
     }
 
@@ -553,3 +554,4 @@
       width: 100vw;
     }
   }
+
