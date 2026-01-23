@@ -152,7 +152,7 @@
     const muteBtn = document.getElementById("muteBtn");
 
     // ===== Background Music Settings =====
-    music.volume = 0.2;
+    music.volume = 0.05;
     music.muted = false;
 
     // User interaction flag (required for mobile audio)
@@ -219,6 +219,28 @@
       music.pause();
       music.currentTime = 0;
     });
+
+    // Stop music when leaving page / app
+    function stopAllAudio() {
+      if (music) {
+        music.pause();
+        music.currentTime = 0;
+      }
+    }
+
+    // When page is closed, refreshed, or navigated away
+    window.addEventListener("beforeunload", stopAllAudio);
+
+    // When tab becomes hidden (mobile app switch, screen lock)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAllAudio();
+      }
+    });
+
+    // When navigating with browser back/forward
+    window.addEventListener("pagehide", stopAllAudio);
+
   </script>
 
   <script>
